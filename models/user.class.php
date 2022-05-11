@@ -163,6 +163,17 @@
             return false;
         }
 
+        //---------------
+        public static function userLogout(){
+            global $currentUser;
+            if(isset($currentUser)){
+                setcookie('PHPSESSID','',time()-100);
+                unset($_SESSION);
+                session_destroy();
+            }
+            return false;
+        }
+
 
 
 

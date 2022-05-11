@@ -18,7 +18,9 @@
 					<a class=" btn btn-outline-light" href="<?= FOLDER ?>/profile"><?=$currentUser->email?></a>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-danger" href="<?= FOLDER ?>/logout">Salir</a>
+					<form action="<?= FOLDER ?>/logout" method="post">
+						<button class="btn btn-danger" type="submit" id="logout" name="logout">Salir</button>
+					</form>
 				</li>
 
 		<?php

@@ -47,11 +47,23 @@
         public function login(){
             try {
                 $user = User::login();
+                header("Location: ".FOLDER."/");
                 
             } catch (\Throwable $th) {
                 print_r($th->getMessage());
             }
         }
+
+        public function logout(){
+            try {
+                User::userLogout();
+                header("Location: ".FOLDER."/login");
+                
+            } catch (\Throwable $th) {
+                print_r($th->getMessage());
+            }
+        }
+
 
 
     }

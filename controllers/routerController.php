@@ -52,6 +52,11 @@
                 $userController->login();
             }
 
+
+            if($this->method == "POST" && $this->uri == "/logout"){
+                $userController->logout();
+            }
+
             //con la expresión regular le decimos que la url sea user/y el número que sea
             if( $this->method == "GET" && preg_match("/^\/user\/[0-9]+$/i", $this->uri) ){
 
