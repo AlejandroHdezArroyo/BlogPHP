@@ -57,6 +57,10 @@
                 $userController->logout();
             }
 
+            if($this->method == "GET" && $this->uri == "/profile"){
+                $webController->profile();
+            }
+
             //con la expresión regular le decimos que la url sea user/y el número que sea
             if( $this->method == "GET" && preg_match("/^\/user\/[0-9]+$/i", $this->uri) ){
 

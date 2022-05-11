@@ -36,6 +36,10 @@
 
         }
 
+        public function profile(){
+          require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/user/profile.php");
+        }
+
 
 
     }
