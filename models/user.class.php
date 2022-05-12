@@ -163,7 +163,6 @@
             return false;
         }
 
-        //---------------
         public static function userLogout(){
             global $currentUser;
             if(isset($currentUser)){

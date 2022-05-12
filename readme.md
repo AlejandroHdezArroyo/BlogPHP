@@ -169,3 +169,15 @@ TAREAS PARA PROYECTO:
     - filtrado de artículos en la home en base a categorías
     - buscador de artículos
     - listado de artículos favoritos...
+
+
+
+
+
+
+    PARA CRUD DEL BLOG
+    - Un usuario tiene que estar registrado y logueado para escribir un artículo
+    - Un usuario puede escribir muchos articulos
+    - Un artículo los escribe un usuario
+    - Un artículo tiene: tiítulo, subtitulo, texto, autor, imágen(de portada), imagen (en cuerpo), creado_en, categoría...
+    - Usuario tiene: email, password, nombre, apellidos, imagen...
