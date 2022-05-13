@@ -25,7 +25,8 @@
             //conectar con bbdd del
             global $connection;
             //SQL query
-            $query = "SELECT * FROM Articulos WHERE id = $id";
+            $query = "SELECT * FROM `Articulos` WHERE id = $id";
+            echo $query;
             //ejecutar query
             $execq = $connection->query($query);
 

@@ -24,6 +24,7 @@
         }
 
         public function signup() {
+            global $currentUser;
             try {
                 //llamar a método create de User
                 //echo "Signup de userController";

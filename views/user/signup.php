@@ -23,6 +23,16 @@
     					<label for="name_user">Nombre</label>
 					    <input type="text" class="form-control" id="name_user" name="name_user"> 
   					</div> -->
+					  <div class="form-group">
+    					<label for="nombre_user">Nombre</label>
+					    <input type="text" class="form-control" id="name_user" name="name">
+					    <small id="correoHelp" class="form-text text-muted">Introduzca su nombre</small>
+  					</div>
+					  <div class="form-group">
+    					<label for="surname_user">Apellidos</label>
+					    <input type="text" class="form-control" id="surname_user" name="surname">
+					    <small id="correoHelp" class="form-text text-muted">Introduzca al menos el primer apellido</small>
+  					</div>
   					<div class="form-group">
     					<label for="email_user">Correo</label>
 					    <input type="email" class="form-control" id="email_user" name="email" >

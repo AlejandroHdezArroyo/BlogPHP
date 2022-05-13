@@ -3,6 +3,8 @@
     class User extends DBConnection {
         private $id;
         private $email;
+        private $nombre;
+        private $apellidos;
         private $password;
         private $created_at;
 
@@ -52,6 +54,7 @@
         }
 
         public static function signup(){
+            
             //1. validar campos
                  //correo y password está ok?
             if( !self::validateFields() ){

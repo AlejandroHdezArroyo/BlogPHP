@@ -8,6 +8,7 @@ class ArticleController{
     }
 
     public function show( $id ){
+        global $currentUser;
 
         try {
             //ir a por el usuario nº1
@@ -25,6 +26,9 @@ class ArticleController{
     public function createArt(){
         try {
             Article::signupArt();
+
+            require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/post/show.php");
+
         } catch (\Throwable $th) {
             echo "ERROR: ".$th->getMessage();
         }

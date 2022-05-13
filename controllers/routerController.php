@@ -90,9 +90,9 @@
             if( $this->method == "GET" && preg_match("/^\/article\/[0-9]+$/i", $this->uri) ){
                 echo "articulito bonito";
 
-                //$id = str_replace("/post/", "", $this->uri);
+                $id = str_replace("/article/", "", $this->uri);
 
-                //$userController->show($id):
+                $articleController->show($id);
             }
 
         }
