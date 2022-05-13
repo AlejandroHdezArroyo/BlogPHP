@@ -1,4 +1,4 @@
-<footer>
+<footer class="blockquote-footer">
 	<div class="container">
   		<div class="row">
   			<div class="col-4">TRAZOS: PHP</div>

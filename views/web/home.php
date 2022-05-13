@@ -13,18 +13,8 @@
 <body>
     <?php
 	    require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/navigator.php");
-        ?>
-    <?php
-        if(isset($currentUser)){
-    ?>
-
-        <a class="btn btn-success" href="<?= FOLDER ?>/create">Crear Artículo</a>
-    
-    <?php
-        }
     ?>
     
-
     <h1> Soy la HOME</h1>
 
     <!-- FOOTER -->

@@ -14,8 +14,14 @@
 		<?php 
 			}else{
 		?>
+
 				<li class="nav-item">
 					<a class=" btn btn-outline-light" href="<?= FOLDER ?>/profile"><?=$currentUser->email?></a>
+				</li>
+				<li class="nav-item">
+					<form action="<?= FOLDER ?>/create" method="get">
+						<button class="btn btn-success" type="submit" id="create" name="create">Crear Artículo</button>
+					</form>
 				</li>
 				<li class="nav-item">
 					<form action="<?= FOLDER ?>/logout" method="post">

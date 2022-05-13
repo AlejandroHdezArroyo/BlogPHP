@@ -16,6 +16,7 @@
            
             $webController = new WebController();
             $userController = new UserController();
+            $articleController = new ArticleController();
             
             if( $this->method == "GET" && ($this->uri == "/" || $this->uri == "/home") ){
 
@@ -57,6 +58,15 @@
                 $userController->logout();
             }
 
+            if($this->method == "GET" && $this->uri == "/create"){
+                $webController->createArt();
+            }
+
+            if($this->method == "POST" && $this->uri == "/article"){
+                $articleController->createArt();
+            }
+
+
             if($this->method == "GET" && $this->uri == "/profile"){
                 $webController->profile();
             }
@@ -74,6 +84,15 @@
                 // $userController = new UserController();
                 // $userController->show( $id );
                 
+            }
+
+
+            if( $this->method == "GET" && preg_match("/^\/article\/[0-9]+$/i", $this->uri) ){
+                echo "articulito bonito";
+
+                //$id = str_replace("/post/", "", $this->uri);
+
+                //$userController->show($id):
             }
 
         }

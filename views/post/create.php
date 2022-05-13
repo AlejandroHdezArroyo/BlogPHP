@@ -19,10 +19,10 @@
       <div class="row justify-content-center fila">
       
         <div class="col-6">
-          <form action="" method="POST">
+          <form action="<?=FOLDER?>/article" method="POST">
             <div class="form-group">
               <label for="Titulo">Título</label>
-              <input type="text" class="form-control" id="Titulo" name="Titulo" placeholder="Título">
+              <input type="text" class="form-control" id="Titulo" name="titulo" placeholder="Título">
             </div>
             <div class="form-group">
               <label for="Texto">Texto</label>
@@ -33,7 +33,7 @@
               <input class="form-control" type="file" id="imagen" name="imagen">
             </div>
             <div class="form-group">
-                <select class="form-select">
+                <select class="form-select" name="categoria">
                     <option selected>Categoría</option>
                     <option value="1">Uno</option>
                     <option value="2">Dos</option>
@@ -43,7 +43,7 @@
 
 
 
-            <button type="submit" class="btn btn-success" name="action" value="create">Publicar</button>
+            <button type="submit" class="btn btn-success" name="create" value="create">Publicar</button>
           </form> 
         </div>
       </div>

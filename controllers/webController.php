@@ -40,6 +40,10 @@
           require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/user/profile.php");
         }
 
+        public function createArt(){
+          require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/post/create.php");
+        }
+
 
 
     }
