@@ -26,7 +26,7 @@
             global $connection;
             //SQL query
             $query = "SELECT * FROM `Articulos` WHERE id = $id";
-            echo $query;
+            //echo $query;
             //ejecutar query
             $execq = $connection->query($query);
 
@@ -48,7 +48,7 @@
 
 
         public static function signupArt(){
-            print_r($_POST);
+            //print_r($_POST);
             //1. validar campos
             if( !self::validateFields() ){
                 throw new Exception("Campos no válidos");
@@ -67,8 +67,26 @@
                 throw new Exception( "Error al crear artículo: ". $connection->error );
             }
             //artículo creado
+            $idArt = $connection->insert_id;
+            return $idArt;
         }
 
+
+        public static function list(){
+            global $connection;
+
+            $query_listado_art = "SELECT * FROM `Articulos` WHERE 1";
+
+            $execQueryArt = $connection->query($query_listado_art);
+
+            if( $connection->error ){
+                throw new Exception( "Error al cargar artículos: ". $connection->error );
+            }
+
+            $datosArticulos = $execQueryArt->fetch_all(MYSQLI_ASSOC);
+            return $datosArticulos;
+
+        }
 
 
 

@@ -19,9 +19,7 @@
 					<a class=" btn btn-outline-light" href="<?= FOLDER ?>/profile"><?=$currentUser->email?></a>
 				</li>
 				<li class="nav-item">
-					<form action="<?= FOLDER ?>/create" method="get">
-						<button class="btn btn-success" type="submit" id="create" name="create">Crear Artículo</button>
-					</form>
+					<a class="btn btn-success" href="<?= FOLDER ?>/create">Crear Artículo</a>
 				</li>
 				<li class="nav-item">
 					<form action="<?= FOLDER ?>/logout" method="post">

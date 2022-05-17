@@ -19,9 +19,9 @@ const FOLDER = "";
 
   //se va a encargar de analizar rutas y hacer cosas en consecuencia
   $rc = new RouterController();
-  echo "<br><br>";
-  print_r($rc);
-  echo "<br><br>";
+  // echo "<br><br>";
+  // print_r($rc);
+  // echo "<br><br>";
 
   $rc->manageUris();
     

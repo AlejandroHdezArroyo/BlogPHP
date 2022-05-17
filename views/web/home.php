@@ -17,6 +17,25 @@
     
     <h1> Soy la HOME</h1>
 
+    <div>
+    <?php
+        foreach ($articulos as $orden => $datos) {
+    ?>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="/assets/imgs/blog_default.png" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title"><?= $datos['titulo']?></h5>
+            <p class="card-text"><?= $datos['texto']?></p>
+            <a href="<?=FOLDER?>/article/<?=$datos['id']?>" class="btn btn-primary">Ver artículo</a>
+        </div>
+    </div>
+    <?php
+        }
+    ?>
+    </div>
+    
+    
+
     <!-- FOOTER -->
   	<?php
 	    require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/footer.php");

@@ -11,7 +11,14 @@
         
         public function index(){
           global $currentUser;
-          require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/web/home.php");
+          try {
+            $articulos = Article::list();
+            //print_r($articulos);
+            require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/web/home.php");
+          } catch (\Throwable $th) {
+            echo "ERROR: ".$th->getMessage();
+          }
+
         }
 
         public function services(){

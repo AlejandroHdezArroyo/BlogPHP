@@ -121,7 +121,7 @@
 
             //hemos hecho login!
             $user = new User($user_bbdd);
-            print_r($user);
+            //print_r($user);
 
             $user->create_session();
 

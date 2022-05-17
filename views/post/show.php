@@ -17,7 +17,7 @@
 	<!-- POST -->
 	<div class="container page post">
 		<div class="row justify-content-center">
-			<span>$article->creado_en;</span>
+			<span><?=$article->creado_en;?></span>
 		</div>
 
 		
@@ -30,7 +30,7 @@
 			</div>
 		<div class="row justify-content-end">
 			<div class="col-6">
-			<?= $currentUser->name; ?>
+			<!-- <?= $user->name; ?> -->
 			</div>
 			
 		</div>

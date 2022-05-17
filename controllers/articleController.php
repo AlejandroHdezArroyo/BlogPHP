@@ -12,7 +12,8 @@ class ArticleController{
 
         try {
             //ir a por el usuario nº1
-            $article =  Article::getByIdArt($id);
+            $article = Article::getByIdArt($id);
+            //print_r($article);
 
             //cargar la vista del articulo
             require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/post/show.php");
@@ -25,9 +26,9 @@ class ArticleController{
 
     public function createArt(){
         try {
-            Article::signupArt();
+            $idArt = Article::signupArt();
 
-            require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/post/show.php");
+            header("Location: ".FOLDER."/article/$idArt");
 
         } catch (\Throwable $th) {
             echo "ERROR: ".$th->getMessage();
