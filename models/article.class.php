@@ -71,6 +71,40 @@
             return $idArt;
         }
 
+        public static function borradoArt(){
+            global $currentUser;
+            if($currentUser && isset($_POST['borrarArt'])){
+                global $connection;
+                $id = $_POST['borrarArt'];
+    
+                $q_delete_art = "DELETE FROM `Articulos` WHERE id = $id";
+    
+                $connection->query($q_delete_art);
+
+                if( $connection->error ){
+                    throw new Exception( "Error al borrar artículo: ". $connection->error );
+                }
+            }
+        }
+
+        public static function editarArt(){
+            global $currentUser;
+            global $article;
+            if($currentUser){
+                global $connection;
+                $id = $article->id;
+
+                $qArt = "SELECT * FROM `Articulos` WHERE id = $id";
+
+                $execqArt = $connection->query($qArt);
+
+                // if($connection->error){
+                //     throw new Exception ("Error al editar un artículo: ".$connection->error);
+                // }
+                $article_bd = $execqArt->fetch_all(MYSQLI_ASSOC);
+            }
+        }
+
 
         public static function list(){
             global $connection;
@@ -87,8 +121,6 @@
             return $datosArticulos;
 
         }
-
-
 
         private static function validateFields(){
             if( 

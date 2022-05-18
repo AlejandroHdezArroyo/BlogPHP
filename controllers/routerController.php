@@ -58,18 +58,31 @@
                 $userController->logout();
             }
 
+
             if($this->method == "GET" && $this->uri == "/create"){
                 $webController->createArt();
             }
+
 
             if($this->method == "POST" && $this->uri == "/article"){
                 $articleController->createArt();
             }
 
 
+            if($this->method == "POST" && $this->uri == "/deleteArticle"){
+                $articleController->deleteArt();
+            }
+
+            // if($this->method == "GET" && $this->uri == "/editArticle"){
+            //     $webController->editArt();
+            // }
+
+
             if($this->method == "GET" && $this->uri == "/profile"){
                 $webController->profile();
             }
+            
+
 
             //con la expresión regular le decimos que la url sea user/y el número que sea
             if( $this->method == "GET" && preg_match("/^\/user\/[0-9]+$/i", $this->uri) ){
@@ -92,6 +105,14 @@
                 $id = str_replace("/article/", "", $this->uri);
 
                 $articleController->show($id);
+            }
+            
+
+            if( $this->method == "GET" && preg_match("/^\/editArticle\/[0-9]+$/i", $this->uri) ){
+
+                $id = str_replace("/editArticle/", "", $this->uri);
+
+                $webController->editArt();
             }
 
         }

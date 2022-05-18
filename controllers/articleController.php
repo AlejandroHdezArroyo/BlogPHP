@@ -35,6 +35,18 @@ class ArticleController{
         }
     }
 
+
+   public function deleteArt(){
+       try {
+            Article::borradoArt();
+
+            //echo "Artículo borrado";
+            header("Location: ".FOLDER."/");
+       } catch (\Throwable $th) {
+            echo "ERROR: ".$th->getMessage();
+       }
+   }
+
 }
 
 

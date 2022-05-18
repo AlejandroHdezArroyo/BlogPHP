@@ -9,8 +9,8 @@
 
 </head>
 <body>
-<?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
+	<?php
+		require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
 
 	?>
 
@@ -34,6 +34,22 @@
 			</div>
 			
 		</div>
+
+		<?php
+			if($currentUser && $currentUser->id == $article->user_id){
+		?>
+			<form action="/deleteArticle" method="post">
+        		<button class="btn btn-danger" name="borrarArt" value="<?=$article->id?>"> Borrar </button>
+      		</form>
+
+			<a class="btn btn-warning" href="<?= FOLDER ?>/editArticle/<?=$article->id?>">Editar</a>
+
+			  <!-- <form action="/editArticle" method="post">
+        		<button class="btn btn-warning" name="editarArt" value="<?=$article->id?>"> Editar </button>
+      		</form> -->
+		<?php
+			}
+		?>
 	</div>
 
 	<!-- FOOTER -->

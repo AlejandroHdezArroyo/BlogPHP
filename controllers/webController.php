@@ -51,6 +51,11 @@
           require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/post/create.php");
         }
 
+        public function editArt(){
+          //Article::editarArt();
+          require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/post/edit.php");
+        }
+
 
 
     }

@@ -17,7 +17,7 @@
     
     <h1> Soy la HOME</h1>
 
-    <div>
+    <div class="d-flex flex-wrap">
     <?php
         foreach ($articulos as $orden => $datos) {
     ?>
