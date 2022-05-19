@@ -26,7 +26,7 @@
 
 
             <br>
-            <button class="btn btn-warning" type="submit" name="editArt">Editar</button>
+            <button class="btn btn-warning" type="submit" name="editArticle">Editar</button>
 
           </form>
 

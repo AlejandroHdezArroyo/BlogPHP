@@ -33,3 +33,13 @@
 	</ul>
 </nav>
 
+<script>
+	document.getElementById("logout").addEventListener("click", function(e) {
+		let confirmacion = confirm("¿Seguro que quieres salir?");
+		if(!confirmacion){
+		console.log("NO!");
+		e.preventDefault(); // PARAR el evento de submit
+	}
+});
+</script>
+

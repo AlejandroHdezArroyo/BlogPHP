@@ -25,7 +25,8 @@
             //conectar con bbdd del
             global $connection;
             //SQL query
-            $query = "SELECT * FROM `Articulos` WHERE id = $id";
+            // $query = "SELECT * FROM `Articulos` WHERE id = $id";
+            $query = "SELECT `Articulos`.`id`, `Articulos`.`titulo`, `Articulos`.`texto`, `Articulos`.`user_id`, `Articulos`.`imagen`, `Articulos`.`categoria`, `Articulos`.`creado_en`, `user`.`nombre`, `user`.`apellidos` FROM `Articulos`, `user` WHERE `Articulos`.`id` = $id AND `Articulos`.`user_id` = `user`.`id`";
             //echo $query;
             //ejecutar query
             $execq = $connection->query($query);
@@ -73,9 +74,10 @@
 
         public static function borradoArt(){
             global $currentUser;
-            if($currentUser && isset($_POST['borrarArt'])){
+            $id = $_POST['borrarArt'];
+            $article = Article::getByIdArt($id);
+            if($currentUser && $currentUser->id == $article->user_id && isset($_POST['borrarArt'])){
                 global $connection;
-                $id = $_POST['borrarArt'];
     
                 $q_delete_art = "DELETE FROM `Articulos` WHERE id = $id";
     
@@ -87,21 +89,22 @@
             }
         }
 
-        public static function editarArt(){
+        public static function editarArt($id){
             global $currentUser;
-            global $article;
-            if($currentUser){
+            extract($_POST);
+            $article = Article::getByIdArt($id);
+            if($currentUser && $currentUser->id == $article->user_id && isset($_POST['editArticle'])){
                 global $connection;
-                $id = $article->id;
 
-                $qArt = "SELECT * FROM `Articulos` WHERE id = $id";
+                $q_update_art = "UPDATE `Articulos` SET `titulo`='$titulo',`texto`='$texto' WHERE id = $id";
 
-                $execqArt = $connection->query($qArt);
+                $connection->query($q_update_art);
 
-                // if($connection->error){
-                //     throw new Exception ("Error al editar un artículo: ".$connection->error);
-                // }
-                $article_bd = $execqArt->fetch_all(MYSQLI_ASSOC);
+                if( $connection->error ){
+                    throw new Exception( "Error al editar artículo: ". $connection->error );
+                }
+
+                echo $q_update_art;
             }
         }
 

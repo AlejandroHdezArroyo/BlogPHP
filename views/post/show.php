@@ -30,7 +30,7 @@
 			</div>
 		<div class="row justify-content-end">
 			<div class="col-6">
-			<!-- <?= $user->name; ?> -->
+			<?=$article->nombre?>
 			</div>
 			
 		</div>
@@ -39,14 +39,11 @@
 			if($currentUser && $currentUser->id == $article->user_id){
 		?>
 			<form action="/deleteArticle" method="post">
-        		<button class="btn btn-danger" name="borrarArt" value="<?=$article->id?>"> Borrar </button>
+        		<button class="btn btn-danger" name="borrarArt" id="btn_delete" type="submit" value="<?=$article->id?>"> Borrar </button>
       		</form>
 
 			<a class="btn btn-warning" href="<?= FOLDER ?>/editArticle/<?=$article->id?>">Editar</a>
 
-			  <!-- <form action="/editArticle" method="post">
-        		<button class="btn btn-warning" name="editarArt" value="<?=$article->id?>"> Editar </button>
-      		</form> -->
 		<?php
 			}
 		?>
@@ -57,5 +54,16 @@
 	require_once($_SERVER['DOCUMENT_ROOT']."/modules/footer.php");
 
 	?>
+
+<script>
+	document.getElementById("btn_delete").addEventListener("click", function(e) {
+		let confirmacion = confirm("¿Seguro que quieres borrar el artículo?");
+		if(!confirmacion){
+		console.log("NO!");
+		e.preventDefault(); // PARAR el evento de submit
+	}
+});
+</script>
+
 </body>
 </html>

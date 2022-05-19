@@ -9,7 +9,7 @@ const FOLDER = "";
 
   //print_r($_SESSION);
 
-  print_r($currentUser);
+  //print_r($currentUser);
   //preguntar por login...
 
   //conectamos a bbdd

@@ -47,6 +47,15 @@ class ArticleController{
        }
    }
 
+   public function editArt($id){
+       try {
+           echo "HEMOS LLEGADO";
+           Article::editarArt($id);
+       } catch (\Throwable $th) {
+            echo "ERROR: ".$th->getMessage();
+       }
+   }
+
 }
 
 
