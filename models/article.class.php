@@ -30,7 +30,7 @@
             //echo $query;
             //ejecutar query
             $execq = $connection->query($query);
-
+           
             if($connection->error){
                 throw new Exception ("Error al obtener un artículo: ".$connection->error);
             }
@@ -42,7 +42,6 @@
             $article_bd = $execq->fetch_assoc();
 
             $article = new Article($article_bd);
-
 
             return $article;            
         }
@@ -109,21 +108,39 @@
         }
 
 
-        public static function list(){
+        public static function list($pages){
             global $connection;
+            $articulosPagina = 4;
+            $offset = ($pages -1) * $articulosPagina;
+
+            $query_paginacion_art = "SELECT * FROM `Articulos` WHERE 1 LIMIT $articulosPagina OFFSET $offset";
 
             $query_listado_art = "SELECT * FROM `Articulos` WHERE 1";
 
+            $execqQueryPages = $connection->query($query_paginacion_art);
+
             $execQueryArt = $connection->query($query_listado_art);
+            
 
             if( $connection->error ){
                 throw new Exception( "Error al cargar artículos: ". $connection->error );
             }
 
-            $datosArticulos = $execQueryArt->fetch_all(MYSQLI_ASSOC);
-            return $datosArticulos;
+            $paginasArticulos = $execqQueryPages->fetch_all(MYSQLI_ASSOC);
+
+
+            $paginas = $execQueryArt->num_rows/$articulosPagina;
+            $paginas = ceil($paginas);
+            
+            $result = [
+                "data" => $paginasArticulos,
+                "pages" => $paginas,
+            ];
+
+            return $result;
 
         }
+
 
         private static function validateFields(){
             if( 

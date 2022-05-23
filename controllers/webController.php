@@ -9,11 +9,15 @@
         }
 
         
-        public function index(){
+        public function index($pages = 1){
           global $currentUser;
+
           try {
-            $articulos = Article::list();
-            //print_r($articulos);
+            $articulos_result = Article::list($pages);
+            $articulos = $articulos_result['data'];
+
+            $paginas = $articulos_result['pages'];
+            
             require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/web/home.php");
           } catch (\Throwable $th) {
             echo "ERROR: ".$th->getMessage();

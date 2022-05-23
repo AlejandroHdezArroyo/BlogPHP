@@ -21,7 +21,7 @@
     <?php
         foreach ($articulos as $orden => $datos) {
     ?>
-    <div class="card" style="width: 18rem;">
+    <div class="mx-auto mb-5 card" style="width: 18rem;">
         <img class="card-img-top" src="/assets/imgs/blog_default.png" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title"><?= $datos['titulo']?></h5>
@@ -33,6 +33,43 @@
         }
     ?>
     </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="ml-3 pagination">
+
+            <?php
+                if($pages>=2){
+            ?>
+                <li class="page-item"><a class="page-link" href="<?=$pages - 1?>">Anterior</a></li>
+            <?php
+                }
+            ?>
+                <?php
+                    for ($i=0; $i < $paginas; $i++) {
+                ?>
+                        <li class="page-item <?php
+                        if($pages == $i+1){
+                            echo "active";
+                        }
+                        ?>"
+                        
+                        ><a class="page-link" href="<?=$i+1?>">
+                            <?=$i+1?>
+                        </a></li>
+                <?php
+                    }
+                ?>
+
+                <?php
+                    if($pages!=$paginas){
+                ?>
+                    <li class="page-item"><a class="page-link" href="<?=$pages + 1?>">Siguiente</a></li>
+                 <?php
+                    }
+                ?>
+           
+        </ul>
+    </nav>
     
     
 

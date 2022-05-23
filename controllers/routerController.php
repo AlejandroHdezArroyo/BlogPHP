@@ -24,6 +24,14 @@
                 
             }
 
+            if( $this->method == "GET" && preg_match("/^\/home\/pagina\/[0-9]+$/i", $this->uri)) {
+
+                $pages = str_replace("/home/pagina/", "", $this->uri);
+
+                $webController->index($pages);
+                
+            }
+
             if($this->method == "GET" && $this->uri == "/services"){
 
                 $webController->services();

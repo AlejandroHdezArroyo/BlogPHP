@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-dark">
-   <a class="navbar-brand" href="/">Blog MVC en PHP</a>
+   <a class="navbar-brand" href="/home/pagina/1">Blog MVC en PHP</a>
    <ul class="nav justify-content-end">
 
    		<?php 
