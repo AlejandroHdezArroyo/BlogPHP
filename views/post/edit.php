@@ -17,9 +17,18 @@
       <div class="row justify-content-center">
         <div class="col-8">
           <h1>Editar Artículo</h1>
-          <form action="" method="post">
+          <form action="" method="post" enctype="multipart/form-data">
             <label for="nombre">Título</label>
             <input class="form-control" type="text" id="titulo" name="titulo" value="<?=$article->titulo?>">
+
+            <div class="form-group">
+              
+              <img src="<?=$article->getImage()?>">
+              <h6><?=$article->imagen?></h6>
+
+              <label for="formFile" class="form-label">Imagen</label>
+              <input class="form-control" type="file" id="imagen" name="imagen">
+            </div>
 
             <label for="descripcion">Texto</label>
             <textarea class="form-control" name="texto" id="texto" cols="30" rows="10"><?=$article->texto?></textarea>

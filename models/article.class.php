@@ -84,11 +84,7 @@
 
 
         public static function save_file($idArt){
-            if( !self::validateFields() ){
-                throw new Exception("Formato de imágen no válido");
-            }
-
-            $path = "uploads/";
+            $path = FOLDER."uploads/";
             $file = $_FILES['imagen'];
             if(!file_exists($path)){
                 mkdir($path);
@@ -100,7 +96,9 @@
             $image_temp =  $file['tmp_name'];
             $filename =  $file['name'];
             move_uploaded_file($image_temp, $path."/".$filename);
+
         }
+
 
         public function getImage(){
             return $this->imagen ? FOLDER."/uploads/post_".$this->id."/".$this->imagen : FOLDER."/assets/imgs/blog_default.png";
@@ -144,8 +142,9 @@
             $article = Article::getByIdArt($id);
             if($currentUser && $currentUser->id == $article->user_id && isset($_POST['editArticle'])){
                 global $connection;
+                $imagen = $_FILES['imagen']['name'];
 
-                $q_update_art = "UPDATE `Articulos` SET `titulo`='$titulo',`texto`='$texto' WHERE id = $id";
+                $q_update_art = "UPDATE `Articulos` SET `titulo`='$titulo',`texto`='$texto',`imagen`='$imagen' WHERE id = $id";
 
                 $connection->query($q_update_art);
 
@@ -153,7 +152,21 @@
                     throw new Exception( "Error al editar artículo: ". $connection->error );
                 }
 
-                echo $q_update_art;
+
+
+                $folder = $_SERVER["DOCUMENT_ROOT"].FOLDER."/uploads/post_".$id;
+                $contenido = scandir($folder);
+                foreach ($contenido as $pos => $file) {
+                    if($pos != 0 && $pos !=1){
+                        unlink($folder."/".$file);
+                    }
+                }
+
+                self::save_file($id);
+
+
+
+
             }
         }
 

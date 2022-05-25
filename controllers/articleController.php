@@ -28,7 +28,7 @@ class ArticleController{
         try {
             $idArt = Article::signupArt();
 
-            //header("Location: ".FOLDER."/article/$idArt");
+            header("Location: ".FOLDER."/article/$idArt");
 
         } catch (\Throwable $th) {
             echo "ERROR: ".$th->getMessage();
@@ -41,7 +41,7 @@ class ArticleController{
             Article::borradoArt();
 
             //echo "Artículo borrado";
-            //header("Location: ".FOLDER."/");
+            header("Location: ".FOLDER."/");
        } catch (\Throwable $th) {
             echo "ERROR: ".$th->getMessage();
        }
@@ -51,6 +51,7 @@ class ArticleController{
        try {
            //echo "HEMOS LLEGADO";
            Article::editarArt($id);
+           header("Location: ".FOLDER."/article/$id");
        } catch (\Throwable $th) {
             echo "ERROR: ".$th->getMessage();
        }
