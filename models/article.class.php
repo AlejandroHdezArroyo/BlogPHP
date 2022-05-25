@@ -43,11 +43,12 @@
 
             $article = new Article($article_bd);
 
-            return $article;            
+            return $article;
         }
 
 
         public static function signupArt(){
+            //print_r($_FILES);
             //print_r($_POST);
             //1. validar campos
             if( !self::validateFields() ){
@@ -59,7 +60,10 @@
             global $currentUser;
             extract($_POST);
 
-            $query_insert_art = "INSERT INTO `Articulos`(`titulo`, `texto`, `categoria`, `user_id`) VALUES ('$titulo','$texto','$categoria', '$currentUser->id')";
+            $imagen = $_FILES['imagen']['name'];
+            //meter en la query 'imagen'
+
+            $query_insert_art = "INSERT INTO `Articulos`(`titulo`, `texto`, `categoria`, `user_id`, `imagen`) VALUES ('$titulo','$texto','$categoria', '$currentUser->id', '$imagen')";
             //7. ejecutar query
             $connection->query($query_insert_art);
             //8. errores... 
@@ -68,8 +72,40 @@
             }
             //artículo creado
             $idArt = $connection->insert_id;
+
+            self::save_file($idArt);
+
             return $idArt;
         }
+
+        public function shortDescription(){
+            return substr($this->texto, 0, 100)."...";
+        }
+
+
+        public static function save_file($idArt){
+            if( !self::validateFields() ){
+                throw new Exception("Formato de imágen no válido");
+            }
+
+            $path = "uploads/";
+            $file = $_FILES['imagen'];
+            if(!file_exists($path)){
+                mkdir($path);
+            }
+            $path .= "post_".$idArt;
+            if(!file_exists($path)){
+                mkdir($path);
+            }
+            $image_temp =  $file['tmp_name'];
+            $filename =  $file['name'];
+            move_uploaded_file($image_temp, $path."/".$filename);
+        }
+
+        public function getImage(){
+            return $this->imagen ? FOLDER."/uploads/post_".$this->id."/".$this->imagen : FOLDER."/assets/imgs/blog_default.png";
+        }
+
 
         public static function borradoArt(){
             global $currentUser;
@@ -86,6 +122,20 @@
                     throw new Exception( "Error al borrar artículo: ". $connection->error );
                 }
             }
+
+            self::deleteImage($id);
+        }
+
+        public static function deleteImage($id){
+            $folder = $_SERVER["DOCUMENT_ROOT"].FOLDER."/uploads/post_".$id;
+            $contenido = scandir($folder);
+            foreach ($contenido as $pos => $file) {
+                if($pos != 0 && $pos !=1){
+                    unlink($folder."/".$file);
+                }
+            }
+
+            rmdir($folder);
         }
 
         public static function editarArt($id){
@@ -128,12 +178,18 @@
 
             $paginasArticulos = $execqQueryPages->fetch_all(MYSQLI_ASSOC);
 
+            $articles = [];
+            foreach ($paginasArticulos as $article) {
+                $article_obj = new Article($article);
+                array_push($articles, $article_obj);
+            }
+
 
             $paginas = $execQueryArt->num_rows/$articulosPagina;
             $paginas = ceil($paginas);
             
             $result = [
-                "data" => $paginasArticulos,
+                "data" => $articles,
                 "pages" => $paginas,
             ];
 
@@ -152,8 +208,13 @@
                 throw new Exception("Campos obligatorios: título y categoría");
             }
 
-            return true;
+            //crear validaciones imagenes
+
+            if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" ||$_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/gif"){
+                return true;
+            }
             
+            throw new Exception("Formato de imagen no válido");
         }
 
     }

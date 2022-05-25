@@ -21,7 +21,7 @@
 		</div>
 
 		
-			<img src="/assets/imgs/blog_default.png">
+			<img src="<?=$article->getImage()?>">
 		
 
 			<h1><?= $article->titulo; ?></h1>

@@ -28,7 +28,7 @@ class ArticleController{
         try {
             $idArt = Article::signupArt();
 
-            header("Location: ".FOLDER."/article/$idArt");
+            //header("Location: ".FOLDER."/article/$idArt");
 
         } catch (\Throwable $th) {
             echo "ERROR: ".$th->getMessage();
@@ -41,7 +41,7 @@ class ArticleController{
             Article::borradoArt();
 
             //echo "Artículo borrado";
-            header("Location: ".FOLDER."/");
+            //header("Location: ".FOLDER."/");
        } catch (\Throwable $th) {
             echo "ERROR: ".$th->getMessage();
        }
@@ -49,7 +49,7 @@ class ArticleController{
 
    public function editArt($id){
        try {
-           echo "HEMOS LLEGADO";
+           //echo "HEMOS LLEGADO";
            Article::editarArt($id);
        } catch (\Throwable $th) {
             echo "ERROR: ".$th->getMessage();
@@ -59,7 +59,4 @@ class ArticleController{
 }
 
 
-
-
-// $query = "SELECT * FROM article, user WHERE article.id = $id AND article.user_id = user.id";
 ?>

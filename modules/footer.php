@@ -1,4 +1,4 @@
-<footer class="blockquote-footer">
+<footer class="mt-5 card-footer text-muted absolute-bottom">
 	<div class="container">
   		<div class="row">
   			<div class="col-4">TRAZOS: PHP</div>

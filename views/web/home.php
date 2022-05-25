@@ -15,24 +15,16 @@
 	    require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/navigator.php");
     ?>
     
-    <h1> Soy la HOME</h1>
+    <h1 class="ml-3 my-5 page-title"> Soy la HOME</h1>
+    <div class="mx-auto d-flex flex-wrap">
+        <?php
+            foreach ($articulos as $orden => $datos) {
+                require($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/card.php");
+            }
+        ?>
+    </div>
 
-    <div class="d-flex flex-wrap">
-    <?php
-        foreach ($articulos as $orden => $datos) {
-    ?>
-    <div class="mx-auto mb-5 card" style="width: 18rem;">
-        <img class="card-img-top" src="/assets/imgs/blog_default.png" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title"><?= $datos['titulo']?></h5>
-            <p class="card-text"><?= $datos['texto']?></p>
-            <a href="<?=FOLDER?>/article/<?=$datos['id']?>" class="btn btn-primary">Ver artículo</a>
-        </div>
-    </div>
-    <?php
-        }
-    ?>
-    </div>
+    
 
     <nav aria-label="Page navigation example">
         <ul class="ml-3 pagination">
@@ -40,20 +32,21 @@
             <?php
                 if($pages>=2){
             ?>
-                <li class="page-item"><a class="page-link" href="<?=$pages - 1?>">Anterior</a></li>
+                <li class="page-item"><a class="page-link" href="<?=FOLDER?>/home/pagina/<?=$pages - 1?>">Anterior</a></li>
             <?php
                 }
             ?>
                 <?php
                     for ($i=0; $i < $paginas; $i++) {
                 ?>
-                        <li class="page-item <?php
-                        if($pages == $i+1){
-                            echo "active";
-                        }
-                        ?>"
-                        
-                        ><a class="page-link" href="<?=$i+1?>">
+                        <li class="page-item
+                            <?php
+                                if($pages == $i+1){
+                                    echo "active";
+                                }
+                            ?>
+                        ">
+                        <a class="page-link" href="<?=FOLDER?>/home/pagina/<?=$i+1?>">
                             <?=$i+1?>
                         </a></li>
                 <?php
@@ -63,7 +56,7 @@
                 <?php
                     if($pages!=$paginas){
                 ?>
-                    <li class="page-item"><a class="page-link" href="<?=$pages + 1?>">Siguiente</a></li>
+                    <li class="page-item"><a class="page-link" href="<?=FOLDER?>/home/pagina/<?=$pages + 1?>">Siguiente</a></li>
                  <?php
                     }
                 ?>
